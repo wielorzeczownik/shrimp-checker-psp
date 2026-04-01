@@ -1,0 +1,33 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "platformAutomerge": true,
+  "automergeType": "pr",
+  "semanticCommits": "enabled",
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true
+    },
+    {
+      "matchDepTypes": [
+        "buildDependencies"
+      ],
+      "semanticCommitType": "build"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "semanticCommitType": "ci"
+    },
+    {
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "semanticCommitType": "build"
+    }
+  ]
+}

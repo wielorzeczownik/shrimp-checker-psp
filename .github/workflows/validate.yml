@@ -1,0 +1,33 @@
+name: Validate
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Rust nightly
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: rustfmt, clippy, rust-src
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install cargo-psp
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-psp
+
+      - name: Cargo fmt
+        run: cargo fmt --check
+
+      - name: Cargo psp (release)
+        run: cargo psp --release

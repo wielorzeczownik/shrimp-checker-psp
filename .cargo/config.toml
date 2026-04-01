@@ -1,0 +1,7 @@
+[build]
+target = "mipsel-sony-psp"
+
+[target.mipsel-sony-psp]
+rustflags = [
+  "-C", "link-arg=-q"
+]

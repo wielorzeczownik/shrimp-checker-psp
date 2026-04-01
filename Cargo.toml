@@ -1,0 +1,22 @@
+[package]
+name = "shrimp-checker-psp"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+psp = "0.3.12"
+embedded-graphics = { version = "0.8.2", default-features = false }
+
+[build-dependencies]
+image = { version = "0.25.10", default-features = false, features = ["png", "webp"] }
+minimp3 = "0.6.1"
+
+[profile.dev]
+panic = "abort"
+opt-level = 2
+
+[profile.release]
+panic = "abort"
+opt-level = "z"
+lto = true
+codegen-units = 1

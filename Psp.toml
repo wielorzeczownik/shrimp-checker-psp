@@ -1,0 +1,8 @@
+title = "Shrimp Checker"
+xmb_icon_png = "assets/logo.png"
+disc_id = "UCES-00001"
+disc_version = "1.00"
+region = 0xFFFFFFFF
+language = "EN"
+parental_level = 7
+psp_system_ver = "6.61"
