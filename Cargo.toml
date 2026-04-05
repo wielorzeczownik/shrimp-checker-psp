@@ -2,6 +2,12 @@
 name = "shrimp-checker-psp"
 version = "0.1.0"
 edition = "2024"
+description = "Are you a shrimp? Find out on your PSP."
+license = "WTFPL"
+repository = "https://github.com/wielorzeczownik/shrimp-checker-psp"
+readme = "README.md"
+keywords = ["psp", "homebrew", "shrimp", "game"]
+categories = ["games"]
 
 [dependencies]
 psp = "0.3.12"
