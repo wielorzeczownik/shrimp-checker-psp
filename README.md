@@ -8,18 +8,28 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wielorzeczownik/shrimp-checker-psp/main/assets/logo.png" alt="shrimp-checker-psp logo" width="200" />
+  <img src="https://raw.githubusercontent.com/wielorzeczownik/shrimp-checker-psp/main/assets/logo.png" alt="shrimp-checker-psp PSP homebrew logo" width="200" />
 </p>
 
-A PSP port of [shrimp-checker](https://github.com/wielorzeczownik/shrimp-checker).
+<p align="center">🇬🇧 English | 🇵🇱 <a href="README.pl.md">Polski</a></p>
+
+The world's most advanced shrimp detection software — now on Sony PSP.
+
+[![shrimp-checker-psp trailer](https://img.youtube.com/vi/wL6nVgfnFyc/maxresdefault.jpg)](https://youtu.be/wL6nVgfnFyc?si=YG_1AoTWyzysv6mC)
+
+## What is this?
+
+**shrimp-checker-psp** is a PSP homebrew application that answers the one question humanity has always needed answered: _are you a shrimp?_
+
+A port of [shrimp-checker](https://github.com/wielorzeczownik/shrimp-checker) to the Sony PlayStation Portable. Written in Rust using [cargo-psp](https://github.com/overdrivenpotato/rust-psp), it runs on real PSP hardware and in the [PPSSPP](https://www.ppsspp.org/) emulator.
 
 ## Running on PSP
 
-Each release includes a prebuilt `EBOOT.PBP` inside a zip archive.
+Each release includes a prebuilt `EBOOT.PBP` inside a zip archive.  
 Latest release: [GitHub Releases](https://github.com/wielorzeczownik/shrimp-checker-psp/releases/latest)
 
-1. Download `shrimp-checker-psp.zip` from the latest release page.
-2. Extract it - you'll get `EBOOT.PBP`.
+1. Download [shrimp-checker-psp.zip](https://github.com/wielorzeczownik/shrimp-checker-psp/releases/latest/download/shrimp-checker-psp.zip).
+2. Extract it — you'll get `EBOOT.PBP`.
 3. Copy it to your PSP's memory stick under `PSP/GAME/shrimp-checker-psp/EBOOT.PBP`.
 4. Launch from the PSP's Game menu.
 
