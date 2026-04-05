@@ -1,6 +1,6 @@
 [package]
 name = "shrimp-checker-psp"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "Are you a shrimp? Find out on your PSP."
 license = "WTFPL"
