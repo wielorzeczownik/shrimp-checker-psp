@@ -1,6 +1,6 @@
 use core::ptr;
 use embedded_graphics::{
-  mono_font::{ascii::FONT_8X13_BOLD, MonoTextStyle},
+  mono_font::{MonoTextStyle, ascii::FONT_8X13_BOLD},
   pixelcolor::BinaryColor,
   prelude::*,
   text::{Baseline, Text},
