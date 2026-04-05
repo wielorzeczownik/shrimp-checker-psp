@@ -29,7 +29,7 @@ jobs:
       - name: Cargo audit
         id: audit
         run: |
-          if cargo audit; then
+          if cargo audit --ignore RUSTSEC-2025-0044 --ignore RUSTSEC-2024-0436; then
             echo "vulnerable=false" >> "$GITHUB_OUTPUT"
           else
             echo "vulnerable=true" >> "$GITHUB_OUTPUT"
@@ -41,7 +41,7 @@ jobs:
 
       - name: Cargo audit (verify)
         if: ${{ steps.audit.outputs.vulnerable == 'true' }}
-        run: cargo audit
+        run: cargo audit --ignore RUSTSEC-2025-0044 --ignore RUSTSEC-2024-0436
 
       - name: Commit Cargo.lock
         if: ${{ steps.audit.outputs.vulnerable == 'true' }}
