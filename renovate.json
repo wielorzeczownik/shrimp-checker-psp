@@ -3,6 +3,7 @@
   "platformAutomerge": true,
   "automergeType": "pr",
   "semanticCommits": "enabled",
+  "minimumReleaseAge": "3 days",
   "packageRules": [
     {
       "matchUpdateTypes": [
@@ -12,22 +13,11 @@
       "automerge": true
     },
     {
-      "matchDepTypes": [
-        "buildDependencies"
-      ],
-      "semanticCommitType": "build"
-    },
-    {
       "matchManagers": [
         "github-actions"
       ],
+      "minimumReleaseAge": "7 days",
       "semanticCommitType": "ci"
-    },
-    {
-      "matchManagers": [
-        "dockerfile"
-      ],
-      "semanticCommitType": "build"
     }
   ]
 }
