@@ -1,70 +1,86 @@
 # Contributing to shrimp-checker-psp
 
-Thank you for considering a contribution. This document describes how to get started.
+Thank you for considering a contribution. This document covers everything you need to get started.
 
-## Prerequisites
+## Overview
 
-- [Rust](https://rustup.rs/) nightly toolchain with `rust-src` component
-- [`cargo-psp`](https://github.com/overdrivenpotato/rust-psp)
-- Docker (optional, for the containerized build)
+shrimp-checker-psp is a homebrew application for the PlayStation Portable that monitors shrimp tank parameters. It targets the `mipsel-sony-psp` platform and is built with Rust nightly using `cargo-psp`.
 
-## Development setup
+## Project structure
 
-```bash
-git clone https://github.com/wielorzeczownik/shrimp-checker-psp.git
-cd shrimp-checker-psp
-cargo psp --release
+```text
+.
+├── src/
+│   ├── main.rs            entry point
+│   ├── app.rs             main application loop
+│   ├── constants.rs       thresholds and configuration constants
+│   └── i18n/              localisation (en, pl)
+├── assets/                embedded assets (sound, graphics)
+├── build.rs               PSP build metadata
+├── Cargo.toml
+└── cliff.toml             changelog configuration
 ```
 
-Or with Docker:
+## Running checks locally
+
+### With tools installed locally
 
 ```bash
-make docker-build
-```
-
-## Before submitting a PR
-
-Make sure these pass locally:
-
-```bash
+# Rust
 cargo fmt --check
+cargo clippy --all-targets -Zbuild-std -- -D warnings
+cargo audit
 cargo psp --release
+
+# Shell
+shfmt --diff scripts/
+
+# Markdown
+markdownlint-cli2 "**/*.md"
 ```
+
+### With Docker (no local installs required)
+
+```bash
+docker run --rm -v "$(pwd):/src" -w /src mvdan/shfmt --diff scripts/
+
+docker run --rm -v "$(pwd):/workdir" davidanson/markdownlint-cli2 "**/*.md"
 
 ## Commit style
 
 This project uses [Conventional Commits](https://www.conventionalcommits.org/). Commit messages drive automatic changelog generation and version bumping.
 
-Common prefixes:
-
-| Prefix | When to use |
-|--------|-------------|
-| `feat:` | New feature |
-| `fix:` | Bug fix |
-| `chore:` | Maintenance, dependency updates |
+| Prefix      | When to use                         |
+| ----------- | ----------------------------------- |
+| `feat:`     | New feature or behavior             |
+| `fix:`      | Bug fix                             |
+| `test:`     | Adding or updating tests            |
+| `chore:`    | Maintenance, dependency updates     |
 | `refactor:` | Code change without behavior change |
-| `docs:` | Documentation only |
-| `style:` | Formatting, no logic change |
-| `ci:` | CI/CD changes |
-| `build:` | Build system or build-dependency changes |
+| `docs:`     | Documentation only                  |
+| `ci:`       | CI/CD changes                       |
+| `build:`    | Build system or build-dependency changes |
 
 Breaking changes must include `BREAKING CHANGE:` in the commit footer.
+
+Keep commits focused on a single concern. If a change touches both logic and tests, a single commit is fine – if it touches unrelated areas, split it.
 
 ## Pull requests
 
 - Keep PRs focused on a single concern.
 - Reference any related issue in the PR description.
-- The Validate workflow must pass.
+- All CI checks must pass before merging.
 
 ## Reporting bugs
 
 Open an [issue](https://github.com/wielorzeczownik/shrimp-checker-psp/issues) and include:
+
 - What you did
 - What you expected
 - What actually happened
-- Whether you're running on real hardware or an emulator (and which one)
+- Your environment (OS, emulator or real hardware, and which one)
 
-> For security issues, please read [SECURITY.md](SECURITY.md) before opening a public issue.
+> For security issues, read [SECURITY.md](SECURITY.md) before opening a public issue.
 
 ## License
 
