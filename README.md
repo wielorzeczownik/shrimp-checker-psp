@@ -13,7 +13,7 @@
 
 <p align="center">🇬🇧 English | 🇵🇱 <a href="README.pl.md">Polski</a></p>
 
-The world's most advanced shrimp detection software — now on Sony PSP.
+The world's most advanced shrimp detection software – now on Sony PSP.
 
 [![shrimp-checker-psp trailer](https://img.youtube.com/vi/wL6nVgfnFyc/maxresdefault.jpg)](https://youtu.be/wL6nVgfnFyc?si=YG_1AoTWyzysv6mC)
 
@@ -29,7 +29,7 @@ Each release includes a prebuilt `EBOOT.PBP` inside a zip archive.
 Latest release: [GitHub Releases](https://github.com/wielorzeczownik/shrimp-checker-psp/releases/latest)
 
 1. Download [shrimp-checker-psp.zip](https://github.com/wielorzeczownik/shrimp-checker-psp/releases/latest/download/shrimp-checker-psp.zip).
-2. Extract it — you'll get `EBOOT.PBP`.
+2. Extract it – you'll get `EBOOT.PBP`.
 3. Copy it to your PSP's memory stick under `PSP/GAME/shrimp-checker-psp/EBOOT.PBP`.
 4. Launch from the PSP's Game menu.
 

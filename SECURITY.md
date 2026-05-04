@@ -11,6 +11,7 @@ Only the latest release receives security fixes.
 Report vulnerabilities privately via [GitHub Security Advisories](https://github.com/wielorzeczownik/shrimp-checker-psp/security/advisories/new).
 
 Include as much detail as possible:
+
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact

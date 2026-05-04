@@ -13,7 +13,7 @@
 
 <p align="center">🇬🇧 <a href="README.md">English</a> | 🇵🇱 Polski</p>
 
-Najbardziej zaawansowane oprogramowanie do wykrywania krewetek na świecie — teraz na Sony PSP.
+Najbardziej zaawansowane oprogramowanie do wykrywania krewetek na świecie – teraz na Sony PSP.
 
 [![shrimp-checker-psp trailer](https://img.youtube.com/vi/wL6nVgfnFyc/maxresdefault.jpg)](https://youtu.be/wL6nVgfnFyc?si=YG_1AoTWyzysv6mC)
 
@@ -29,7 +29,7 @@ Każde wydanie zawiera gotowy plik `EBOOT.PBP` w archiwum zip.
 Najnowsze wydanie: [GitHub Releases](https://github.com/wielorzeczownik/shrimp-checker-psp/releases/latest)
 
 1. Pobierz [shrimp-checker-psp.zip](https://github.com/wielorzeczownik/shrimp-checker-psp/releases/latest/download/shrimp-checker-psp.zip).
-2. Wypakuj archiwum — otrzymasz plik `EBOOT.PBP`.
+2. Wypakuj archiwum – otrzymasz plik `EBOOT.PBP`.
 3. Skopiuj go na kartę pamięci PSP do folderu `PSP/GAME/shrimp-checker-psp/EBOOT.PBP`.
 4. Uruchom z menu Game na PSP.
 
