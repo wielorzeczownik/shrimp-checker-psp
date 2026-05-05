@@ -49,7 +49,7 @@ if [[ "$(printf '%s\n' "$current_version" "$next_version" | sort -V | tail -1)" 
 fi
 
 cargo set-version "$next_version"
-cargo check
+cargo check -Zbuild-std=core,alloc,panic_unwind
 
 echo "released=true" >>"$GITHUB_OUTPUT"
 echo "version=$next_version" >>"$GITHUB_OUTPUT"
