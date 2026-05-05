@@ -9,9 +9,9 @@ use embedded_graphics::{
 pub static mut VRAM: usize = 0;
 
 pub fn draw_image(pix: &[u8], width: usize, height: usize, dst_x: usize, dst_y: usize, bg: u32) {
-  let bg_red = (bg & 0xFF) as u32;
-  let bg_grn = (bg >> 8 & 0xFF) as u32;
-  let bg_blu = (bg >> 16 & 0xFF) as u32;
+  let bg_red = bg & 0xFF;
+  let bg_grn = bg >> 8 & 0xFF;
+  let bg_blu = bg >> 16 & 0xFF;
   for row in 0..height {
     for col in 0..width {
       let idx = (row * width + col) * 4;
