@@ -45,6 +45,7 @@ markdownlint-cli2 "**/*.md"
 docker run --rm -v "$(pwd):/src" -w /src mvdan/shfmt --diff scripts/
 
 docker run --rm -v "$(pwd):/workdir" davidanson/markdownlint-cli2 "**/*.md"
+```
 
 ## Commit style
 
