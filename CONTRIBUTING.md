@@ -51,15 +51,15 @@ docker run --rm -v "$(pwd):/workdir" davidanson/markdownlint-cli2 "**/*.md"
 
 This project uses [Conventional Commits](https://www.conventionalcommits.org/). Commit messages drive automatic changelog generation and version bumping.
 
-| Prefix      | When to use                         |
-| ----------- | ----------------------------------- |
-| `feat:`     | New feature or behavior             |
-| `fix:`      | Bug fix                             |
-| `test:`     | Adding or updating tests            |
-| `chore:`    | Maintenance, dependency updates     |
-| `refactor:` | Code change without behavior change |
-| `docs:`     | Documentation only                  |
-| `ci:`       | CI/CD changes                       |
+| Prefix      | When to use                              |
+| ----------- | ---------------------------------------- |
+| `feat:`     | New feature or behavior                  |
+| `fix:`      | Bug fix                                  |
+| `test:`     | Adding or updating tests                 |
+| `chore:`    | Maintenance, dependency updates          |
+| `refactor:` | Code change without behavior change      |
+| `docs:`     | Documentation only                       |
+| `ci:`       | CI/CD changes                            |
 | `build:`    | Build system or build-dependency changes |
 
 Breaking changes must include `BREAKING CHANGE:` in the commit footer.
