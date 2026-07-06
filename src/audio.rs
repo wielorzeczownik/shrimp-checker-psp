@@ -6,7 +6,7 @@ static mut AUDIO_BUF: [i16; AUDIO_CHUNK * 2] = [0; AUDIO_CHUNK * 2];
 /// Plays the embedded sound, blocking until playback completes.
 pub fn play_sound() {
   let pcm: &[i16] = unsafe {
-    core::slice::from_raw_parts(SOUND_BYTES.as_ptr() as *const i16, SOUND_BYTES.len() / 2)
+    core::slice::from_raw_parts(SOUND_BYTES.as_ptr().cast::<i16>(), SOUND_BYTES.len() / 2)
   };
 
   unsafe {

@@ -5,8 +5,8 @@ mod audio;
 mod constants;
 mod gfx;
 
-use constants::*;
-use gfx::*;
+use constants::{BG, CAT_BYTES, GRAY, LIME, LOGO_H, LOGO_W, LOGO_X, LOGO_Y, SHRIMP_BYTES, WHITE};
+use gfx::{clear, draw_centered, draw_image, draw_str, fill_rect};
 use psp::sys::{self, CtrlButtons, SceCtrlData};
 
 include!(concat!(env!("OUT_DIR"), "/module_info.rs"));
@@ -17,6 +17,8 @@ enum Screen {
   Yes,
 }
 
+// `psp::module!` requires an unmangled `psp_main` with the default Rust ABI.
+#[allow(clippy::no_mangle_with_rust_abi)]
 #[unsafe(no_mangle)]
 pub fn psp_main() -> i32 {
   psp::enable_home_button();
@@ -48,7 +50,7 @@ pub fn psp_main() -> i32 {
     unsafe { sys::sceDisplayWaitVblankStart() };
 
     let mut pad: SceCtrlData = unsafe { core::mem::zeroed() };
-    unsafe { sys::sceCtrlReadBufferPositive(&mut pad, 1) };
+    unsafe { sys::sceCtrlReadBufferPositive(&raw mut pad, 1) };
     // Find out which buttons just pressed.
     let pressed = pad.buttons & !prev;
     prev = pad.buttons;

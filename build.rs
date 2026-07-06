@@ -7,7 +7,9 @@ fn main() {
   // Generate psp::module!
   {
     let ver = env!("CARGO_PKG_VERSION");
-    let mut parts = ver.splitn(3, '.').filter_map(|p| p.parse::<u32>().ok());
+    let mut parts = ver
+      .splitn(3, '.')
+      .filter_map(|part| part.parse::<u32>().ok());
     let major = parts.next().unwrap_or(0);
     let minor = parts.next().unwrap_or(0);
     fs::write(
@@ -65,7 +67,7 @@ fn main() {
       match decoder.next_frame() {
         Ok(minimp3::Frame { data, .. }) => pcm.extend_from_slice(&data),
         Err(minimp3::Error::Eof) => break,
-        Err(err) => panic!("MP3 decode: {:?}", err),
+        Err(err) => panic!("MP3 decode: {err:?}"),
       }
     }
     let raw: Vec<u8> = pcm.iter().flat_map(|sample| sample.to_le_bytes()).collect();

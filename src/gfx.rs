@@ -15,21 +15,21 @@ pub fn draw_image(pix: &[u8], width: usize, height: usize, dst_x: usize, dst_y: 
   for row in 0..height {
     for col in 0..width {
       let idx = (row * width + col) * 4;
-      let red = pix[idx] as u32;
-      let grn = pix[idx + 1] as u32;
-      let blu = pix[idx + 2] as u32;
-      let alpha = pix[idx + 3] as u32;
+      let red = u32::from(pix[idx]);
+      let grn = u32::from(pix[idx + 1]);
+      let blu = u32::from(pix[idx + 2]);
+      let alpha = u32::from(pix[idx + 3]);
       if alpha == 0 {
         continue;
       }
       let color = if alpha == 255 {
-        0xFF000000 | blu << 16 | grn << 8 | red
+        0xFF00_0000 | blu << 16 | grn << 8 | red
       } else {
         let inv_alpha = 255 - alpha;
         let out_red = (red * alpha + bg_red * inv_alpha) / 255;
         let out_grn = (grn * alpha + bg_grn * inv_alpha) / 255;
         let out_blu = (blu * alpha + bg_blu * inv_alpha) / 255;
-        0xFF000000 | out_blu << 16 | out_grn << 8 | out_red
+        0xFF00_0000 | out_blu << 16 | out_grn << 8 | out_red
       };
       put_pixel(dst_x + col, dst_y + row, color);
     }
@@ -75,6 +75,8 @@ pub fn fill_rect(left: usize, top: usize, width: usize, height: usize, color: u3
   }
 }
 
+// Hot pixel-plotting path called from every blit loop; force inlining.
+#[allow(clippy::inline_always)]
 #[inline(always)]
 pub fn put_pixel(col: usize, row: usize, color: u32) {
   if col < psp::SCREEN_WIDTH as usize && row < psp::SCREEN_HEIGHT as usize {

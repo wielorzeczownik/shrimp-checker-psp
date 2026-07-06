@@ -1,8 +1,8 @@
 // Colors ABGR8888 format
-pub const BG: u32 = 0xFF200810;
-pub const WHITE: u32 = 0xFFFFFFFF;
-pub const LIME: u32 = 0xFF44FF88;
-pub const GRAY: u32 = 0xFFA0A0B0;
+pub const BG: u32 = 0xFF20_0810;
+pub const WHITE: u32 = 0xFFFF_FFFF;
+pub const LIME: u32 = 0xFF44_FF88;
+pub const GRAY: u32 = 0xFFA0_A0B0;
 
 pub const LOGO_W: usize = 128;
 pub const LOGO_H: usize = 128;
