@@ -1,5 +1,7 @@
-use crate::constants::{AUDIO_CHUNK, SOUND_BYTES};
 use psp::sys;
+
+const AUDIO_CHUNK: usize = 2048;
+static SOUND_BYTES: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/sound.raw"));
 
 static mut AUDIO_BUF: [i16; AUDIO_CHUNK * 2] = [0; AUDIO_CHUNK * 2];
 

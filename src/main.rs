@@ -2,12 +2,24 @@
 #![no_main]
 
 mod audio;
-mod constants;
 mod gfx;
 
-use constants::{BG, CAT_BYTES, GRAY, LIME, LOGO_H, LOGO_W, LOGO_X, LOGO_Y, SHRIMP_BYTES, WHITE};
 use gfx::{clear, draw_centered, draw_image, draw_str, fill_rect};
 use psp::sys::{self, CtrlButtons, SceCtrlData};
+
+// Colors, ABGR8888 format.
+const BG: u32 = 0xFF20_0810;
+const WHITE: u32 = 0xFFFF_FFFF;
+const LIME: u32 = 0xFF44_FF88;
+const GRAY: u32 = 0xFFA0_A0B0;
+
+const LOGO_W: usize = 128;
+const LOGO_H: usize = 128;
+const LOGO_X: usize = (psp::SCREEN_WIDTH as usize - LOGO_W) / 2;
+const LOGO_Y: usize = 8;
+
+static CAT_BYTES: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/cat.raw"));
+static SHRIMP_BYTES: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/logo.raw"));
 
 include!(concat!(env!("OUT_DIR"), "/module_info.rs"));
 
