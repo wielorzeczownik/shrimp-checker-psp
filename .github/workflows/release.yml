@@ -74,27 +74,41 @@ jobs:
         if: ${{ steps.bump.outputs.released == 'true' }}
         uses: orhun/git-cliff-action@v4.8.0
         with:
-          config: cliff.toml
+          config: cliff-release.toml
           args: --unreleased --tag ${{ steps.bump.outputs.tag }}
         env:
           OUTPUT: release-notes.md
+          GITHUB_REPO: ${{ github.repository }}
+
+      - name: Generate CHANGELOG.md (git-cliff)
+        if: ${{ steps.bump.outputs.released == 'true' }}
+        uses: orhun/git-cliff-action@v4.8.0
+        with:
+          config: cliff.toml
+          args: --tag ${{ steps.bump.outputs.tag }}
+        env:
+          OUTPUT: CHANGELOG.md
           GITHUB_REPO: ${{ github.repository }}
 
       - name: Commit, tag, and push
         if: ${{ steps.bump.outputs.released == 'true' && steps.bump.outputs.commit_changes == 'true' }}
         uses: EndBug/add-and-commit@v10.0.0
         with:
-          add: "Cargo.toml Cargo.lock"
+          add: "Cargo.toml Cargo.lock CHANGELOG.md"
           default_author: github_actions
           message: "chore(release): ${{ steps.bump.outputs.tag }} [skip ci]"
           tag: "${{ steps.bump.outputs.tag }}"
           push: true
 
-      - name: Push tag only
+      - name: Commit changelog and tag
         if: ${{ steps.bump.outputs.released == 'true' && steps.bump.outputs.commit_changes == 'false' }}
-        run: |
-          git tag "${{ steps.bump.outputs.tag }}"
-          git push origin "${{ steps.bump.outputs.tag }}"
+        uses: EndBug/add-and-commit@v10.0.0
+        with:
+          add: "CHANGELOG.md"
+          default_author: github_actions
+          message: "chore(release): ${{ steps.bump.outputs.tag }} [skip ci]"
+          tag: "${{ steps.bump.outputs.tag }}"
+          push: true
 
       - name: Upload release notes
         if: ${{ steps.bump.outputs.released == 'true' }}
@@ -110,11 +124,14 @@ jobs:
     timeout-minutes: 45
     permissions:
       contents: read
+      id-token: write
+      attestations: write
     steps:
       - name: Checkout tag
         uses: actions/checkout@v7.0.0
         with:
           ref: ${{ needs.prepare-release.outputs.tag }}
+          persist-credentials: false
 
       - name: Install Rust nightly
         uses: dtolnay/rust-toolchain@nightly
@@ -141,11 +158,21 @@ jobs:
           cd dist
           zip -r "../shrimp-checker-psp.zip" PSP/
 
+      - name: Compute SHA-256 checksum
+        run: sha256sum shrimp-checker-psp.zip > shrimp-checker-psp.zip.sha256
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v4.1.1
+        with:
+          subject-path: shrimp-checker-psp.zip
+
       - name: Upload artifact
         uses: actions/upload-artifact@v7.0.1
         with:
           name: eboot
-          path: shrimp-checker-psp.zip
+          path: |
+            shrimp-checker-psp.zip
+            shrimp-checker-psp.zip.sha256
 
   publish-release:
     needs:
