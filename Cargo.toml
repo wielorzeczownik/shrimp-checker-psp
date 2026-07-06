@@ -10,7 +10,7 @@ keywords = ["psp", "homebrew", "shrimp", "game"]
 categories = ["games"]
 
 [dependencies]
-psp = "0.3.12"
+psp = "0.3.13"
 embedded-graphics = { version = "0.8.2", default-features = false }
 
 [build-dependencies]
